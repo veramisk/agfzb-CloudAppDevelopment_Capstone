@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charsets="UTF-8">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" hrefs="#">Best Car Dealership</a> 
+                <a href="{% url 'djangoapp:about' %}">About Us</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>About Us</h1>
+        <p><em class="text-uppercase">Welcome</em> to Best Cars Dealership, home to the best cars in North America. We Sell Domestic and Imported Cars at Reasonable Prices.</P>
+    </div>
+    <footer class="navbar fixed-bottom">
+        <ul>
+            <li>Best Cars</li>
+            <li><a href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
+        </ul>
+    </footer>
+    </body>
+    </html>
