@@ -28,7 +28,7 @@
             {% if user.is_authenticated %}
             <li>
                 <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
-                <a class="btn btn-primary" href="{% url 'djangoapp:logout' %}">Logout</a>
+                <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
             </li>
             {% else %}
             <li>
@@ -41,7 +41,6 @@
                         <input type="password" class="form-control" placeholder="Password" name="psw">
                         <button class="btn btn-primary" type="submit">Login</button>
                         <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
-      
                         </div>
                     </form>
                 </li>

@@ -78,12 +78,12 @@ def registration_request(request):
                                             password=password)
             user.is_superuser = True
             user.is_staff=True
-            user.save()  
+            user.save()
             login(request, user)
-            return redirect("djangoapp:index")
-        else:
-            messages.warning(request, "The user already exists.")
-            return redirect("djangoapp:registration.html", context)
+        return redirect("djangoapp:index")
+    else:
+        messages.warning(request, "The user already exists.")
+        return redirect("djangoapp:registration.html", context)
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):
     context = {}
