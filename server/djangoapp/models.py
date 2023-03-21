@@ -1,5 +1,8 @@
 from django.db import models
+from django.core import serializers
 from django.utils.timezone import now
+import uuid
+import json
 
 
 # Create your models here.
@@ -12,12 +15,12 @@ from django.utils.timezone import now
 class CarMake(models.Model):
 
     name = models.CharField(null=False, max_length=100, default='make')
-    description = models.TextField()
+    description = models.CharField(max_length=500)
     def __str__(self):
         return f"{self.name}"                    
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 class CarModel(models.Model):
-
+    
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
     make = models.ForeignKey('CarMake', on_delete=models.CASCADE)
 # - Name
@@ -72,11 +75,14 @@ class CarDealer:
 
     def __str__(self):
         return "Dealer name: " + self.full_name
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
 class DealerReview:
 
-    def __init__(self, dealership, name, purchase, review, purchase_date, car_make, car_model, car_year, sentiment, id):
+    def __init__(self, dealership, name, purchase, review):
         
         self.dealership = dealership
         self.name = name
@@ -86,11 +92,11 @@ class DealerReview:
         self.car_make = ""
         self.car_model = ""
         self.car_year = ""
-        self.sentiment = sentiment
+        self.sentiment = ""
         self.id = ""
 
     def __str__(self):
-        return "Reviews: " + self.review 
+        return "Review: " + self.review
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
