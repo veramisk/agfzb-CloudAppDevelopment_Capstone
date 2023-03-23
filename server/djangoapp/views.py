@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
 # from .models import CarModel, CarDealer, CarMake, DealerReview
-from .models import CarMake, CarModel
+from .models import CarMake, CarModel, CarDealer
 # from .restapis import related methods
+from .restapis import get_request, get_dealers_from_cf, get_dealer_by_id, get_dealers_by_state
 # from djangoapp.restapis import get_request, get_dealers_from_cf, get_dealer_by_id_from_cf, get_dealer_reviews_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -97,9 +98,15 @@ def registration_request(request):
 #         context["dealership_list"] = dealerships
 #         return render(request, 'djangoapp/index.html', context)        
 def get_dealerships(request):
-    context = {}
     if request.method == "GET":
-        return render(request, 'djangoapp/index.html', context)
+        url = "https://eu-de.functions.appdomain.cloud/api/v1/web/a008216d-d244-4a4f-9107-b2acb78ebb38/dealership-package/get-dealership"
+        # Get dealers from the URL
+        dealerships = get_dealers_from_cf(url)
+        # Concat all dealer's short name
+        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
+        # Return a list of dealer short name
+        return HttpResponse(dealer_names)        
+
 # Create a `get_dealer_details` view to render the reviews of a dealer
 # def get_dealer_details(request, dealer_id):
 # ...
