@@ -1,8 +1,8 @@
 from django.db import models
-# from django.core import serializers
+from django.core import serializers
 from django.utils.timezone import now
-# import uuid
-# import json
+import uuid
+import json
 
 
 # Create your models here.
@@ -16,10 +16,7 @@ class CarMake(models.Model):
     name = models.CharField(null=False, max_length=100, default='make')
     description = models.CharField(max_length=200)
     def __str__(self):
-         return self.name
-    # def __str__(self):
-    #     # return f"{self.name}" 
-    #      return self.name
+        return "Name: " + self.name
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
@@ -82,24 +79,23 @@ class CarDealer:
 #                           sort_keys=True, indent=4)
 
 # # <HINT> Create a plain Python class `DealerReview` to hold review data
-# class DealerReview:
+class DealerReview:
 
-#     def __init__(self, dealership, name, purchase, review):
-        
-#         self.dealership = dealership
-#         self.name = name
-#         self.purchase = purchase
-#         self.review = review
-#         self.purchase_date = ""
-#         self.car_make = ""
-#         self.car_model = ""
-#         self.car_year = ""
-#         self.sentiment = ""
-#         self.id = ""
+    def __init__(self, dealership, name, purchase, review):
+        self.dealership = dealership
+        self.name = name
+        self.purchase = purchase
+        self.review = review
+        self.purchase_date = ""
+        self.car_make = ""
+        self.car_model = ""
+        self.car_year = ""
+        self.sentiment = ""
+        self.id = ""
 
-#     def __str__(self):
-#         return "Review: " + self.review
+    def __str__(self):
+        return "Review: " + self.review
 
-#     def to_json(self):
-#         return json.dumps(self, default=lambda o: o.__dict__,
-#                             sort_keys=True, indent=4)
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                            sort_keys=True, indent=4)
