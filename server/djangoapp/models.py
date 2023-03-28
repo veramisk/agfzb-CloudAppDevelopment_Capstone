@@ -26,14 +26,16 @@ class CarMake(models.Model):
 # - Year (DateField)
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object                          
+# Car Model model
 
 class CarModel(models.Model):
     make = models.ForeignKey('CarMake', on_delete=models.CASCADE)
     name = models.CharField(null=False,max_length=100, default='Car')
+    id = models.IntegerField(default=1,primary_key=True)
     SEDAN = 'Sedan'
     SUV = 'SUV'
     WAGON = 'Wagon' 
-    id = models.IntegerField(default=1,primary_key=True)
+    
     CAR_TYPES = [
     (SEDAN,'Sedan'),
     (SUV, 'SUV'),

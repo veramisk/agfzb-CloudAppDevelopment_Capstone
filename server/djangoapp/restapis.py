@@ -95,6 +95,8 @@ def get_dealer_by_id_from_cf(url, id):
             zip=dealer_doc["zip"]
         )
     return dealer_obj
+
+    
 # Create a get_dealer_by_state method to get dealers from a cloud function    
 # def get_dealers_by_state_from_cf(url, state):
 #     results = []
